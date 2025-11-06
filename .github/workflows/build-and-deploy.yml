@@ -36,8 +36,9 @@ jobs:
           mkdir -p temp_release
           # Copy the generated output
           cp -r .output/public/* temp_release/
-          # Copy the batch file
-          cp scripts/serve.bat temp_release/
+          # Copy the startup script
+          cp scripts/start.bat temp_release/
+          cp scripts/start.sh temp_release/
 
       - name: Deploy to release branch
         uses: peaceiris/actions-gh-pages@v3

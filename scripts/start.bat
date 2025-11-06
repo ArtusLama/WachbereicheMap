@@ -1,9 +1,9 @@
 @echo off
-REM Simple HTTP Server Launcher using npx serve
-REM
-REM Usage: Run this batch file to start the local server
-REM The site will be accessible at http://localhost:3000
+setlocal enabledelayedexpansion
 
+REM Simple HTTP Server Launcher using npx serve
+
+cls
 echo.
 echo ===================================
 echo    FlipperMap Local Server
@@ -30,12 +30,9 @@ if not exist "index.html" (
 )
 
 echo Starting server with npx serve...
-echo.
 echo Open your browser at: http://localhost:3000
-echo.
-echo Press Ctrl+C to stop the server
 echo.
 
 npx serve .
 
-pause
+

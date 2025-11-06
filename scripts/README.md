@@ -10,16 +10,16 @@ These scripts allow you to run the generated static site locally using `npx serv
 ## Usage
 
 ### Windows
-Double-click `serve.bat` or run from command prompt:
+Double-click `start.bat` or run from command prompt:
 ```cmd
-serve.bat
+start.bat
 ```
 
 ### Linux / macOS
 Run from terminal:
 ```bash
-chmod +x serve.sh
-./serve.sh
+chmod +x start.sh
+./start.sh
 ```
 
 Or use npx directly:
