@@ -63,6 +63,38 @@ export default function useCoordinates() {
         }
     }
 
+    // Export coordinates as JSON
+    const exportCoordinates = () => {
+        return JSON.stringify(coordinates.value, null, 2)
+    }
+
+    // Validate and import coordinates (replace mode)
+    const importCoordinates = (jsonData: string, mode: "replace" | "add" = "replace") => {
+        try {
+            const parsed = JSON.parse(jsonData)
+            const data = Array.isArray(parsed) ? parsed : [parsed]
+
+            // Validate each coordinate
+            const validated = data.map(item => CoordinateSchema.parse(item))
+
+            if (mode === "replace") {
+                coordinates.value = validated
+            } else if (mode === "add") {
+                coordinates.value.push(...validated)
+            }
+
+            return { success: true, count: validated.length }
+        } catch (error) {
+            let message = "Unknown error"
+            if (error instanceof z.ZodError) {
+                message = `Validation error: ${error.issues.map((e: z.ZodIssue) => `${e.path.join(".")} - ${e.message}`).join(", ")}`
+            } else if (error instanceof SyntaxError) {
+                message = "Invalid JSON format"
+            }
+            return { success: false, error: message }
+        }
+    }
+
     return {
         coordinates,
         addCoordinate,
@@ -70,5 +102,7 @@ export default function useCoordinates() {
         clearAll,
         getAll,
         updateCoordinate,
+        exportCoordinates,
+        importCoordinates,
     }
 }

@@ -1,8 +1,14 @@
 <template>
     <div class="space-y-2">
-        <h3 class="text-lg font-semibold">
-            Saved Locations ({{ coordinates.coordinates.value.length }})
-        </h3>
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold">
+                Saved Locations ({{ coordinates.coordinates.value.length }})
+            </h3>
+            <div class="flex gap-1">
+                <LocationDataManagerExportButton />
+                <LocationDataManagerImportButton />
+            </div>
+        </div>
         <div
             v-if="coordinates.coordinates.value.length === 0"
             class="text-sm text-muted-foreground py-4"
@@ -35,14 +41,15 @@
                         </p>
                     </div>
                 </div>
-                <UiButton
-                    class="ml-2 h-8 px-2 hover:bg-red-500/25!"
-                    size="sm"
-                    variant="outline"
-                    @click="handleDelete(coord.id)"
-                >
-                    Delete
-                </UiButton>
+                <ConfirmationPopup @confirm="handleDelete(coord.id)">
+                    <UiButton
+                        class="ml-2 h-8 px-2 hover:bg-red-500/25!"
+                        size="sm"
+                        variant="outline"
+                    >
+                        Delete
+                    </UiButton>
+                </ConfirmationPopup>
             </div>
         </div>
     </div>

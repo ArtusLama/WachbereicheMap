@@ -26,9 +26,6 @@ export default defineNuxtConfig({
         plugins: [
             tailwindcss(),
         ],
-        server: {
-            allowedHosts: ["private.knoter.eu"],
-        },
     },
 
     colorMode: {
