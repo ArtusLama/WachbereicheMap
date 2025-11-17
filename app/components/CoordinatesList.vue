@@ -22,26 +22,26 @@
             <div
                 v-for="coord in coordinates"
                 :key="coord.id"
-                class="flex items-center justify-between p-2 border rounded-lg hover:bg-accent/50 transition-colors"
+                class="group/item flex items-center justify-between p-2 border rounded-lg hover:bg-accent/50 transition-colors"
             >
                 <div class="flex items-center gap-2 flex-1 min-w-0">
-                    <ColorPicker
-                        :initial-color="coord.color"
-                        @select="(color) => handleColorChange(coord.id, color)"
-                    >
+                    <div class="flex flex-col items-center shrink-0">
                         <div
-                            class="w-6 h-6 rounded-sm shrink-0 hover:ring-2 ring-ring transition-all cursor-pointer"
-                            :style="{ backgroundColor: coord.color }"
+                            v-if="coord.locationType"
+                            class="h-4 w-6"
                         />
-                    </ColorPicker>
+                        <ColorPicker
+                            :initial-color="coord.color"
+                            @select="(color) => handleColorChange(coord.id, color)"
+                        >
+                            <div
+                                class="w-6 h-6 rounded-sm hover:ring-2 ring-ring transition-all cursor-pointer"
+                                :style="{ backgroundColor: coord.color }"
+                            />
+                        </ColorPicker>
+                    </div>
                     <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2">
-                            <p
-                                v-if="coord.name"
-                                class="font-medium text-sm truncate"
-                            >
-                                {{ coord.name }}
-                            </p>
+                        <div class="flex flex-col">
                             <div
                                 v-if="coord.locationType"
                                 class="flex items-center gap-1 text-xs text-muted-foreground"
@@ -52,10 +52,32 @@
                                 />
                                 <span>{{ coord.locationType }}</span>
                             </div>
+                            <div
+                                v-if="coord.name"
+                                class="flex items-center gap-1"
+                            >
+                                <p class="font-medium text-sm truncate">
+                                    {{ coord.name }}
+                                </p>
+                                <EditLocationNamePopup
+                                    :location-id="coord.id"
+                                    :current-name="coord.name"
+                                    @save="handleNameChange"
+                                >
+                                    <button
+                                        class="opacity-0 group-hover/item:opacity-100 transition-opacity p-0.5 hover:bg-accent rounded"
+                                    >
+                                        <Icon
+                                            name="lucide:pencil"
+                                            class="size-3"
+                                        />
+                                    </button>
+                                </EditLocationNamePopup>
+                            </div>
+                            <p class="text-xs text-muted-foreground">
+                                {{ coord.lat.toFixed(4) }}, {{ coord.lng.toFixed(4) }}
+                            </p>
                         </div>
-                        <p class="text-xs text-muted-foreground">
-                            {{ coord.lat.toFixed(4) }}, {{ coord.lng.toFixed(4) }}
-                        </p>
                     </div>
                 </div>
                 <ConfirmationPopup @confirm="handleDelete(coord.id)">
@@ -90,6 +112,11 @@ const handleDelete = (id: string) => {
 const handleColorChange = (id: string, color: string) => {
     coordinatesStore.updateCoordinate(id, { color })
     toast.success("Farbe aktualisiert")
+}
+
+const handleNameChange = (id: string, newName: string) => {
+    coordinatesStore.updateCoordinate(id, { name: newName })
+    toast.success("Name aktualisiert")
 }
 
 const getCategoryIcon = (locationType: LocationType): string => {
