@@ -25,14 +25,14 @@ import { toast } from "vue-sonner"
 import { storeToRefs } from "pinia"
 
 const areaEditor = useAreaEditorStore()
-const { isEditing, points } = storeToRefs(areaEditor)
+const { isEditing, areaPoints } = storeToRefs(areaEditor)
 
 const handleClick = () => {
     const wasEditing = isEditing.value
     areaEditor.toggleEditing()
 
     if (wasEditing) {
-        if (points.value.length < 3) {
+        if (areaPoints.value.length < 3) {
             toast.error("Mindestens 3 Punkte erforderlich, um einen Bereich zu erstellen")
             return
         }
