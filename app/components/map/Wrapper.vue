@@ -60,6 +60,9 @@
                         </p>
                         <p>{{ coord.lat.toFixed(4) }}, {{ coord.lng.toFixed(4) }}</p>
                     </div>
+                    <UiButton>
+                        test
+                    </UiButton>
                 </LPopup>
             </LMarker>
         </LMap>
@@ -85,7 +88,7 @@ const areaEditor = useAreaEditorStore()
 const subAreas = useSubAreasStore()
 const { isEditing, vignettePolygon } = storeToRefs(areaEditor)
 
-const MAX_BOUNDS_PADDING_RATIO = 0.1 // 10% padding
+const MAX_BOUNDS_PADDING_RATIO = 2 // 200% padding
 const maxBounds = computed<[[number, number], [number, number]] | undefined>(() => {
     if (areaEditor.isEditing || !(areaEditor.areaPoints.length > 0)) {
         return undefined
