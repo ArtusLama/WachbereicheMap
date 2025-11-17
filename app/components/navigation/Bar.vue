@@ -3,7 +3,7 @@
         <div class="flex items-center gap-8">
             <UiSidebarTrigger />
             <p class="text-lg font-black">
-                Flipper Map
+                Wachbereiche
             </p>
         </div>
 
