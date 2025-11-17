@@ -7,10 +7,10 @@
             <div class="space-y-4">
                 <div>
                     <h4 class="font-semibold leading-none">
-                        Import Mode
+                        Import-Modus
                     </h4>
                     <p class="text-sm text-muted-foreground mt-2">
-                        Choose how you want to import locations from the file.
+                        Wählen Sie aus, wie Standorte aus der Datei importiert werden sollen.
                     </p>
                 </div>
 
@@ -21,7 +21,7 @@
                         @click="handleSelectMode('replace')"
                     >
                         <Icon name="lucide:replace" />
-                        Replace All
+                        Alle ersetzen
                     </UiButton>
                     <UiButton
                         variant="outline"
@@ -29,7 +29,7 @@
                         @click="handleSelectMode('add')"
                     >
                         <Icon name="lucide:circle-plus" />
-                        Add to Current
+                        Zu aktuellen hinzufügen
                     </UiButton>
                 </div>
             </div>

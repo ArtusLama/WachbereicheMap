@@ -15,7 +15,7 @@
         <!-- Area management interface -->
         <div class="space-y-4 mt-4">
             <h3 class="text-lg font-semibold">
-                Sub-Areas
+                Bereichsverwaltung
             </h3>
             <div class="grid gap-3">
                 <div

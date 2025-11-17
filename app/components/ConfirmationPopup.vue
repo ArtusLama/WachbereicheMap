@@ -7,10 +7,10 @@
             <div class="space-y-4">
                 <div>
                     <h4 class="font-semibold leading-none">
-                        Confirm Action
+                        Aktion bestätigen
                     </h4>
                     <p class="text-sm text-muted-foreground mt-2">
-                        Are you sure you want to proceed?
+                        Sind Sie sicher, dass Sie fortfahren möchten?
                     </p>
                 </div>
 
@@ -21,10 +21,10 @@
                         variant="outline"
                         @click="handleCancel"
                     >
-                        Cancel
+                        Abbrechen
                     </UiButton>
                     <UiButton @click="handleConfirm">
-                        Confirm
+                        Bestätigen
                     </UiButton>
                 </div>
             </div>

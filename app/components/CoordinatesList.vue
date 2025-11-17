@@ -2,7 +2,7 @@
     <div class="space-y-2">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">
-                Saved Locations ({{ coordinates.length }})
+                Standorte ({{ coordinates.length }})
             </h3>
             <div class="flex gap-1">
                 <LocationDataManagerExportButton />
@@ -13,7 +13,7 @@
             v-if="coordinates.length === 0"
             class="text-sm text-muted-foreground py-4"
         >
-            No locations yet. Add one to get started!
+            Noch keine Standorte! Fügen Sie einen Standort über das Formular oben hinzu.
         </div>
         <div
             v-else
@@ -71,11 +71,11 @@ const { coordinates } = storeToRefs(coordinatesStore)
 
 const handleDelete = (id: string) => {
     coordinatesStore.removeCoordinate(id)
-    toast.success("Location deleted")
+    toast.success("Standort gelöscht")
 }
 
 const handleColorChange = (id: string, color: string) => {
     coordinatesStore.updateCoordinate(id, { color })
-    toast.success("Color updated")
+    toast.success("Farbe aktualisiert")
 }
 </script>

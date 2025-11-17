@@ -22,7 +22,7 @@
                                 <AreaEditorButton />
                             </div>
                             <p class="text-xs text-muted-foreground text-center">
-                                To add points while editing, <strong>right-click</strong> on the map.
+                                Um Punkte während der Bearbeitung hinzuzufügen, <strong>Rechtsklick</strong> auf die Karte.
                             </p>
                         </div>
                     </UiSidebarGroupContent>
@@ -41,7 +41,7 @@
                                     name="lucide:download"
                                     class="h-4 w-4 mr-2"
                                 />
-                                Export All
+                                Alles exportieren
                             </UiButton>
                             <UiButton
                                 variant="default"
@@ -51,7 +51,7 @@
                                     name="lucide:upload"
                                     class="h-4 w-4 mr-2"
                                 />
-                                Import All
+                                Alles importieren
                             </UiButton>
                         </div>
                         <input
@@ -82,9 +82,9 @@ const handleExportAll = async () => {
     try {
         const json = exportAll()
         downloadJson(json, "flipper-map-all-backup.json")
-        toast.success("Export successful", { description: "All data downloaded." })
+        toast.success("Export erfolgreich", { description: "Alle Daten wurden heruntergeladen." })
     } catch (err) {
-        toast.error("Export failed", { description: "Could not export all data." })
+        toast.error("Export fehlgeschlagen", { description: "Daten konnten nicht exportiert werden." })
     }
 }
 
@@ -100,12 +100,12 @@ const onFileSelected = async (e: Event) => {
         const text = await file.text()
         const result = importAll(text, "replace")
         if (result.success) {
-            toast.success("Import successful")
+            toast.success("Import erfolgreich")
         } else {
-            toast.error("Import failed", { description: result.error || "Unknown error" })
+            toast.error("Import fehlgeschlagen", { description: result.error || "Unbekannter Fehler" })
         }
     } catch (err) {
-        toast.error("Import failed", { description: "Could not read file." })
+        toast.error("Import fehlgeschlagen", { description: "Datei konnte nicht gelesen werden." })
     } finally {
         // reset
         if (fileInput.value) fileInput.value.value = ""

@@ -6,7 +6,7 @@
         <UiPopoverTrigger :as-child="true">
             <slot>
                 <UiButton variant="outline">
-                    Select Color
+                    Farbe auswählen
                 </UiButton>
             </slot>
         </UiPopoverTrigger>
@@ -67,7 +67,7 @@
                     class="w-full"
                     @click="handleSelect"
                 >
-                    Select Color
+                    Farbe auswählen
                 </UiButton>
             </div>
         </UiPopoverContent>

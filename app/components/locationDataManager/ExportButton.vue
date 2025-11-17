@@ -2,7 +2,7 @@
     <UiButton
         variant="ghost"
         size="icon"
-        title="Export locations as JSON"
+        title="Standorte als JSON exportieren"
         @click="handleExport"
     >
         <Icon
@@ -33,12 +33,12 @@ const handleExport = async () => {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
 
-        toast.success("Export successful", {
-            description: "Your locations have been downloaded.",
+        toast.success("Export erfolgreich", {
+            description: "Ihre Standorte wurden heruntergeladen.",
         })
     } catch (error) {
-        toast.error("Export failed", {
-            description: "An error occurred while exporting your locations.",
+        toast.error("Export fehlgeschlagen", {
+            description: "Beim Exportieren Ihrer Standorte ist ein Fehler aufgetreten.",
         })
     }
 }

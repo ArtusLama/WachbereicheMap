@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-2">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-semibold">
-                    Sub Areas ({{ areas.length }})
+                    Teilbereiche ({{ areas.length }})
                 </h3>
                 <UiButton
                     v-if="!hasEditingArea || isCreating"
@@ -40,7 +40,7 @@
                         <span class="text-sm">
                             <!-- show dynamic points count while editing, otherwise show the area's name (letter) -->
                             <template v-if="area.isEditing">
-                                {{ area.points.length }} points
+                                {{ area.points.length }} Punkte
                             </template>
                             <template v-else>
                                 {{ area.name }}
@@ -81,7 +81,7 @@
                 v-else
                 class="text-sm text-muted-foreground"
             >
-                No areas added yet
+                Noch keine Teilbereiche hinzugefügt
             </p>
         </div>
         <hr class="border-t">
@@ -89,7 +89,7 @@
             v-if="hasEditingArea"
             class="text-xs text-muted-foreground text-center"
         >
-            Right-click on the map to add points to the area
+            Rechtsklick auf die Karte, um Punkte zum Bereich hinzuzufügen
         </p>
     </div>
 </template>
@@ -107,7 +107,7 @@ const { areas } = storeToRefs(subAreas)
 // Function to handle color changes
 function handleColorChange(id: string, color: string) {
     subAreas.updateAreaColor(id, color)
-    toast.success("Color updated")
+    toast.success("Farbe aktualisiert")
 }
 
 // Computed property to check if any area is being edited
@@ -121,14 +121,14 @@ function handleCancelNewArea() {
     const creating = areas.value.find(a => subAreas.isDraft(a.id) && a.isEditing)
     if (!creating) return
     subAreas.deleteArea(creating.id)
-    toast.success("Area creation cancelled")
+    toast.success("Bereichserstellung abgebrochen")
 }
 
 // Function to start creating a new area
 function handleNewArea() {
     subAreas.startNewArea(getRandomColor())
-    toast.success("Creating new area", {
-        description: "Right-click on the map to add points",
+    toast.success("Neuer Bereich wird erstellt", {
+        description: "Rechtsklick auf die Karte, um Punkte hinzuzufügen",
     })
 }
 
@@ -138,13 +138,13 @@ function handleFinishEditing(id: string) {
     if (!area) return
 
     if (area.points.length < 3) {
-        toast.error("Cannot complete area", {
-            description: "A sub-area must have at least 3 points to form a polygon",
+        toast.error("Bereich kann nicht abgeschlossen werden", {
+            description: "Ein Teilbereich benötigt mindestens 3 Punkte, um ein Polygon zu bilden",
         })
         return
     }
 
     subAreas.stopEditing(id)
-    toast.success("Area created")
+    toast.success("Bereich erstellt")
 }
 </script>

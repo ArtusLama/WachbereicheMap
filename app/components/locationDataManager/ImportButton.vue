@@ -2,7 +2,7 @@
     <UiButton
         variant="ghost"
         size="icon"
-        title="Import locations from JSON"
+        title="Standorte aus JSON importieren"
         @click="handleImportClick"
     >
         <Icon
@@ -55,8 +55,8 @@ const handleFileSelect = async (event: Event) => {
         const content = await file.text()
         performImport(content, selectedMode.value)
     } catch (error) {
-        toast.error("Failed to read file", {
-            description: "Could not read the selected file.",
+        toast.error("Datei konnte nicht gelesen werden", {
+            description: "Die ausgewählte Datei konnte nicht gelesen werden.",
         })
         resetFileInput()
     }
@@ -66,12 +66,12 @@ const performImport = (jsonData: string, mode: "replace" | "add") => {
     const result = coordinatesStore.importCoordinates(jsonData, mode)
 
     if (result.success) {
-        toast.success("Import successful", {
-            description: `${result.count} location(s) have been imported.`,
+        toast.success("Import erfolgreich", {
+            description: `${result.count} Standort(e) wurden importiert.`,
         })
     } else {
-        toast.error("Import failed", {
-            description: result.error || "An error occurred while importing locations.",
+        toast.error("Import fehlgeschlagen", {
+            description: result.error || "Beim Importieren der Standorte ist ein Fehler aufgetreten.",
         })
     }
 

@@ -14,7 +14,7 @@
                 v-if="!isEditing"
                 name="lucide:pencil"
             />
-            {{ isEditing ? "Finish Main Area" : "Edit Main Area" }}
+            {{ isEditing ? "Hauptbereich abschließen" : "Hauptbereich bearbeiten" }}
         </div>
     </UiButton>
 </template>
@@ -33,12 +33,12 @@ const handleClick = () => {
 
     if (wasEditing) {
         if (points.value.length < 3) {
-            toast.error("Need at least 3 points to create an area")
+            toast.error("Mindestens 3 Punkte erforderlich, um einen Bereich zu erstellen")
             return
         }
-        toast.success("Area saved!")
+        toast.success("Bereich gespeichert!")
     } else {
-        toast.info("Click on the map to add points")
+        toast.info("Klicken Sie auf die Karte, um Punkte hinzuzufügen")
     }
 }
 </script>

@@ -18,7 +18,7 @@
             :weight="2"
         >
             <LTooltip v-if="isEditing">
-                Point {{ index + 1 }}
+                Punkt {{ index + 1 }}
             </LTooltip>
         </LCircleMarker>
     </template>
