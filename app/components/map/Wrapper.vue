@@ -40,16 +40,24 @@
                 :lat-lng="[coord.lat, coord.lng]"
             >
                 <LIcon
-                    v-if="coord.locationType"
-                    :icon-size="[21, 42]"
-                    :icon-url="useLocationTypeIcon().getUrl(coord.locationType)"
-                />
-                <LTooltip
-                    :permanent="true"
-                    :interactive="false"
+                    class-name="relative rounded p-1 border border-white shadow-lg"
+                    :icon-size="[30, 30]"
                 >
-                    {{ coord.name || `${coord.lat.toFixed(4)}, ${coord.lng.toFixed(4)}` }}
+                    <div
+                        :style="{ backgroundColor: coord.color }"
+                        class="absolute inset-0 rounded"
+                    />
+                    <Icon
+                        :name="useLocationTypeIcon().getIconName(coord.locationType)"
+                        :size="18"
+                        class="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute text-white"
+                    />
+                </LIcon>
+
+                <LTooltip class="">
+                    {{ coord.name }}
                 </LTooltip>
+
                 <LPopup>
                     <div class="text-sm">
                         <p
@@ -146,3 +154,19 @@ const handleMapClick = (event: { latlng: { lat: number, lng: number } }) => {
     }
 }
 </script>
+
+<style>
+.leaflet-popup-content-wrapper {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+.leaflet-tooltip {
+    background-color: var(--color-background);
+    border: none;
+    color: var(--color-foreground);
+}
+.leaflet-tooltip::before {
+    border-color: transparent transparent transparent var(--color-background);
+}
+</style>
