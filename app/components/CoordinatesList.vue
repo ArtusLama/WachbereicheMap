@@ -25,21 +25,15 @@
                 class="group/item flex items-center justify-between p-2 border rounded-lg hover:bg-accent/50 transition-colors"
             >
                 <div class="flex items-center gap-2 flex-1 min-w-0">
-                    <div class="flex flex-col items-center shrink-0">
+                    <ColorPicker
+                        :initial-color="coord.color"
+                        @select="(color) => handleColorChange(coord.id, color)"
+                    >
                         <div
-                            v-if="coord.locationType"
-                            class="h-4 w-6"
+                            class="w-6 h-6 rounded-sm hover:ring-2 ring-ring transition-all cursor-pointer shrink-0"
+                            :style="{ backgroundColor: coord.color }"
                         />
-                        <ColorPicker
-                            :initial-color="coord.color"
-                            @select="(color) => handleColorChange(coord.id, color)"
-                        >
-                            <div
-                                class="w-6 h-6 rounded-sm hover:ring-2 ring-ring transition-all cursor-pointer"
-                                :style="{ backgroundColor: coord.color }"
-                            />
-                        </ColorPicker>
-                    </div>
+                    </ColorPicker>
                     <div class="flex-1 min-w-0">
                         <div class="flex flex-col">
                             <div
@@ -74,9 +68,6 @@
                                     </button>
                                 </EditLocationNamePopup>
                             </div>
-                            <p class="text-xs text-muted-foreground">
-                                {{ coord.lat.toFixed(4) }}, {{ coord.lng.toFixed(4) }}
-                            </p>
                         </div>
                     </div>
                 </div>
